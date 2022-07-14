@@ -8,7 +8,7 @@ from model import decode_sequence, in_tokenizer
 
 app = Flask(__name__)
   
-@app.route('/api/summarise', methods=['POST'])
+@app.route('/api/summarize', methods=['POST'])
 def summarize():
     # Get the data from the POST request.
     data = request.get_json(force=True)
