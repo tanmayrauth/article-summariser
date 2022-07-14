@@ -1,5 +1,3 @@
-#DataFlair Project
-#import all the required libraries
 import numpy as np
 import pandas as pd
 import pickle
@@ -20,6 +18,8 @@ from tensorflow.keras.utils import plot_model
 from tensorflow.keras.layers import Input,LSTM,Embedding,Dense,Concatenate,Attention
 from sklearn.model_selection import train_test_split
 from bs4 import BeautifulSoup
+from utils import clean
+
 
 #read the dataset file
 df=pd.read_csv("Reviews.csv",nrows=100000)
@@ -39,22 +39,7 @@ contractions= pickle.load(open("contractions.pkl","rb"))['contractions']
 stop_words=set(stopwords.words('english'))
 stemm=LancasterStemmer()
 
-def clean(texts,src):
-  #remove the html tags
-  texts = BeautifulSoup(texts, "lxml").text
-  #tokenize the text into words 
-  words=word_tokenize(texts.lower())
-  #filter words which contains \ 
-  #integers or their length is less than or equal to 3
-  words= list(filter(lambda w:(w.isalpha() and len(w)>=3),words))
-  #contraction file to expand shortened words
-  words= [contractions[w] if w in contractions else w for w in words ]
-  #stem the words to their root word and filter stop words
-  if src=="inputs":
-    words= [stemm.stem(w) for w in words if w not in stop_words]
-  else:
-    words= [w for w in words if w not in stop_words]
-  return words
+
 
 #pass the input records and taret records
 for in_txt,tr_txt in zip(input_data,target_data):
