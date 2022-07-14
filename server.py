@@ -4,7 +4,7 @@ import pickle
 from flask import Flask, request, jsonify
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from utils import clean
-from model import decode_sequence
+from model import decode_sequence, in_tokenizer
 
 app = Flask(__name__)
   

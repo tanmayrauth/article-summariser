@@ -19,7 +19,7 @@ from tensorflow.keras.layers import Input,LSTM,Embedding,Dense,Concatenate,Atten
 from sklearn.model_selection import train_test_split
 from bs4 import BeautifulSoup
 from utils import clean
-
+from text_summarizer_train import in_tokenizer
 
 # encoder inference
 latent_dim=500
